@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllLessons, Lessons } from "/src/Common/Services/LearnService";
+import { getAllLessons, Lessons } from "../../Common/Services/LearnService";
 import MainList from "./MainList";
 // import useFetch from "../../Common/Services/useFetch.js";
 
