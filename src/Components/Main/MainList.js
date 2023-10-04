@@ -3,7 +3,8 @@ const MainList = ({ users }) => {
   return (
     <div>
       <hr />
-      This is the main list stateless child component.
+      <h4>Connect with other users on FitSnap!</h4>
+
       <div>
         <p> User by ID: </p>
         {/* Check that the user object exists */}
