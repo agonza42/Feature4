@@ -1,19 +1,19 @@
 /* STATEFUL PARENT COMPONENT */
-const MainList = ({ lessons }) => {
+const MainList = ({ users }) => {
   return (
     <div>
       <hr />
       This is the main list stateless child component.
       <div>
-        <p> Lesson by ID: </p>
-        {/* Check that the lesson object exists */}
-        {lessons.length > 0 && (
+        <p> User by ID: </p>
+        {/* Check that the user object exists */}
+        {users.length > 0 && (
           <ul>
-            {/* Using getter for lesson Object to display name */}
-            {lessons.map((lesson) => (
-              <li key={"1" + lesson.id}>
+            {/* Using getter for user Object to display name */}
+            {users.map((user) => (
+              <li key={"1" + user.id}>
                 {" "}
-                {lesson.id} | {lesson.get("name")}{" "}
+                {user.id} | {user.get("username")}{" "}
               </li>
             ))}
           </ul>
