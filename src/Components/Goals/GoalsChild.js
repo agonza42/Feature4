@@ -1,28 +1,68 @@
-/* STATEFUL PARENT COMPONENT */
-const GoalChild = ({ users }) => {
-    return (
+import React from 'react';
+
+function GoalChild({ formData, onChange }) {
+  return (
+    <div>
+      {/* Form for users to enter their personal information and goals */}
       <div>
-        <hr />
-        <h4>Connect with other users on FitSnap!</h4>
-  
-        <div>
-          <p> User by ID: </p>
-          {/* Check that the user object exists */}
-          {users.length > 0 && (
-            <ul>
-              {/* Using getter for user Object to display name */}
-              {users.map((user) => (
-                <li key={"1" + user.id}>
-                  {" "}
-                  {user.id} | {user.get("username")}{" "}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>{" "}
+        <h4>Personal Information</h4>
+
+        <div className="form-group">
+          <label htmlFor="height"><b>Height: </b></label>
+          <input
+            type="number"
+            placeholder="Height"
+            name="height"
+            id="height"
+            onChange={onChange}
+            required
+          /><br />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="weight"><b>Weight: </b></label>
+          <input
+            type="number"
+            placeholder="Weight"
+            name="weight"
+            id="weight"
+            onChange={onChange}
+            required
+          /><br />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="age"><b>Age: </b></label>
+          <input
+            type="number"
+            placeholder="Age"
+            name="age"
+            id="age"
+            onChange={onChange}
+            required
+          /><br />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="goal"><b>Goal: </b></label>
+          <select
+            type="text"
+            placeholder="Goal"
+            name="goal"
+            id="goal"
+            onChange={onChange}
+            required
+          >
+            <option disabled selected value> -- select an option -- </option>
+            <option value="lose">Lose weight</option>
+            <option value="gain">Gain weight</option>
+            <option value="maintain">Maintain weight</option>
+          </select>
+        </div>
       </div>
-    );
-  };
-  
-  export default GoalChild;
-  
+      <br />
+    </div>
+  );
+}
+
+export default GoalChild;
