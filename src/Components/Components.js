@@ -4,7 +4,7 @@ import MainModule from "./Main/Main.js";
 const Components = () => {
   return (
     <div>
-      <MainModule />
+      <Main />
     </div>
   );
 };

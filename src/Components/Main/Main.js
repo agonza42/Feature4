@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getAllLessons, Lessons } from "../../Common/Services/LearnService";
+import { getAllUsers, Users } from "../../Common/Services/UserService.js";
 import MainList from "./MainList";
+import UserComponent from "../UserComponent.js"
 // import useFetch from "../../Common/Services/useFetch.js";
 
 /* MAIN MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
@@ -8,17 +9,17 @@ const Main = () => {
   // const data = useFetch("https://jsonplaceholder.typicode.com/todos/");
   // console.log("data: ", data);
   // Variables in the state to hold data
-  const [lessons, setLessons] = useState([]);
+  const [users, setUsers] = useState([]);
 
   // UseEffect to run when the page loads to
   // obtain async data and render
   useEffect(() => {
-    if (Lessons.collection.length) {
-      setLessons(Lessons.collection);
+    if (Users.collection.length) {
+      setUsers(Users.collection);
     } else {
-      getAllLessons().then((lessons) => {
-        console.log(lessons);
-        setLessons(lessons);
+      getAllUsers().then((users) => {
+        console.log(users);
+        setUsers(users);
       });
     }
   }, []);
@@ -26,7 +27,8 @@ const Main = () => {
   return (
     <div>
       This is the main stateful parent component.
-      <MainList lessons={lessons} />
+      <MainList users={users} />
+      <UserComponent />
     </div>
   );
 };
