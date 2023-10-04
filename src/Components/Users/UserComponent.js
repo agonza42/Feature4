@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createUser, getById, getAllUsers, removeUser } from '../Common/Services/UserService';
+import { createUser, getById, getAllUsers, removeUser } from '../../Common/Services/UserService';
 
 const UserComponent = () => {
     const [name, setName] = useState('');
