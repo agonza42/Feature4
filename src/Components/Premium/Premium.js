@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createPremiumSignUp } from '../../Common/Services/PremiumService.js';
 import PremiumChild from "./PremiumChild";
 
 /* Premium MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
@@ -26,22 +27,32 @@ class Premium extends Component {
     console.log('Name:', event.target.name);
     console.log('Value:', event.target.value);
 
-    // WORK IN PROGRESS BELOW! We wanted to see if we could get all of the form data processed into the console for future features
-    /*const { name, value } = event.target;
+    const { name, value } = event.target;
 
-    const updatedFormData = {
-      ...this.state.formData,
-      [name]: value,
-    };
+    let updatedValue;
 
-    this.setState({ formData: updatedFormData }, () => {
-      console.log('Updated state:', this.state.formData);
-    });*/
+    if (name === 'cardNumber' || name === 'securityCode') {
+        updatedValue = parseInt(value);
+    } else if (name === 'expirationDate') { // Assuming expirationDate is input type 'date' which will return date in string format "YYYY-MM-DD".
+        updatedValue = value;
+    } else {
+        updatedValue = value; // default for other fields (like 'name')
+    }
+
+    this.setState(prevState => ({
+        formData: {
+            ...prevState.formData,
+            [name]: updatedValue
+        }
+    }), () => {
+        console.log('Updated state:', this.state.formData);
+    });
+
   }
 
   // Function to handle asynchronous data when a submit event occurs
   // FOR FUTURE FEATURES: We'll change this function to asynchronously take in data from the form submission to then send to a JSON file
-  async handleSubmit(event) {
+  /*async handleSubmit(event) {
     event.preventDefault();
     // Alert for the submit button
     alert('Sign-up form button works');
@@ -63,6 +74,41 @@ class Premium extends Component {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  }*/
+  async handleSubmit(event) {
+    event.preventDefault();
+    console.log("Submitting form data:", this.state.formData);
+    
+    // Parse the values
+    const nameValue = this.state.formData.name;
+    const cardNumberValue = parseInt(this.state.formData.cardNumber);
+    const expirationDateValue = this.state.formData.expirationDate;
+    const securityCodeValue = parseInt(this.state.formData.securityCode);
+
+    const expirationDateObj = new Date(expirationDateValue);
+
+    // Validate the values
+    if (!nameValue || typeof nameValue !== 'string' || !cardNumberValue || cardNumberValue <= 0 || !securityCodeValue || securityCodeValue <= 0 || !/^(\d{4}-\d{2}-\d{2})$/.test(expirationDateValue)) {
+      alert('Please provide valid input values.');
+      return;
+    }
+
+    // Now create the data object to be sent
+    const signupData = {
+      name: nameValue,
+      cardNumber: cardNumberValue,
+      expirationDate: expirationDateObj,
+      securityCode: securityCodeValue
+    };
+
+    try {
+      // Create the signup using your service function
+      const response = await createPremiumSignUp(signupData);
+      console.log('Premium SignUp created successfully:', response);
+
+    } catch (error) {
+      console.error('Error creating the premium signup:', error);
+    }
   }
 
   // Using render for the component's HTML including form and button for user interaction
@@ -82,7 +128,7 @@ class Premium extends Component {
             formData={this.state.formData}
             onChange={this.handleInputChange}
           />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit">
             Subscribe
           </button>
         </form>

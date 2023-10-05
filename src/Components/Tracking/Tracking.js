@@ -26,24 +26,6 @@ class Tracking extends Component {
   }
   
   // Function to handle events that change the input
-  /*handleInputChange(event) {
-    // Logging into the console to make sure form is getting correct values
-    console.log('Event Target:', event.target);
-    console.log('Name:', event.target.name);
-    console.log('Value:', event.target.value);
-
-    // WORK IN PROGRESS BELOW! We wanted to see if we could get all of the form data processed into the console for future features
-    /*const { name, value } = event.target;
-
-    const updatedFormData = {
-      ...this.state.formData,
-      [name]: value
-    };
-
-    this.setState({ formData: updatedFormData }, () => {
-      console.log("Updated state:", this.state.formData);
-    });*/
-  /*}*/
   handleInputChange(event) {
     // Logging into the console to make sure the form is getting the correct values
     console.log('Event Target:', event.target);
@@ -52,10 +34,16 @@ class Tracking extends Component {
 
     const { name, value } = event.target;
 
+    let processedValue = value;
+
+    if (name === 'breakfastCals' || name === 'lunchCals' || name === 'dinnerCals' || name === 'snacksCals' || name === 'exerciseCals') {
+        processedValue = parseFloat(value);
+    }
+
     this.setState(prevState => ({
         formData: {
             ...prevState.formData,
-            [name]: name === 'todaysDate' || name === 'breakfastCals' ? parseFloat(value) : value || name === 'lunchCals' ? parseFloat(value) : value || name === 'dinnerCals' ? parseFloat(value) : value || name === 'snacksCals' ? parseFloat(value) : value || name === 'exerciseCals' ? parseFloat(value) : value
+            [name]: processedValue
         }
     }), () => {
         console.log('Updated state:', this.state.formData);
@@ -63,50 +51,28 @@ class Tracking extends Component {
 }
 
   // Function to handle asynchronous data when a submit event occurs
-  // CHANGE to take in data from the form submission to then send to a JSON fil
-  /*async handleSubmit(event) {
-    event.preventDefault();
-    // Alert for submit button
-    alert('Tracking form button works');
-    try {
-      // Test if we can asynchronously handle data
-      let data = await Promise.resolve({
-        message:
-          'Data fetched successfully (from successful asynchronous API call simulation)',
-      });
-
-      // Update the state with the mocked data
-      this.setState({ fetchedData: data });
-
-      // Alert and log to the console if we've fetched the data successfully
-      alert(
-        'Data fetched successfully (from successful asynchronous API call simulation)'
-      );
-      console.log('Fetched data:', data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }*/
   async handleSubmit(event) {
     event.preventDefault();
     console.log("Submitting form data:", this.state.formData);
 
     // Parse the values
-    const todaysDateValue = (this.state.formData.todaysDate);
+    const todaysDateValue = this.state.formData.todaysDate;
     const breakfastCalsValue = parseFloat(this.state.formData.breakfastCals);
     const lunchCalsValue = parseFloat(this.state.formData.lunchCals);
     const dinnerCalsValue = parseFloat(this.state.formData.dinnerCals);
     const snacksCalsValue = parseFloat(this.state.formData.snacksCals);
     const exerciseCalsValue = parseFloat(this.state.formData.exerciseCals);
     
+    const todaysDateObj = new Date(todaysDateValue);
+
     // Simple validation
-    if (isNaN(todaysDateValue) || isNaN(breakfastCalsValue) || isNaN(lunchCalsValue) || isNaN(dinnerCalsValue) || isNaN(snacksCalsValue) || isNaN(exerciseCalsValue)) {
+    if (!/^(\d{4}-\d{2}-\d{2})$/.test(todaysDateValue) || isNaN(breakfastCalsValue) || isNaN(lunchCalsValue) || isNaN(dinnerCalsValue) || isNaN(snacksCalsValue) || isNaN(exerciseCalsValue)) {
       alert('Please provide values for all fields.');
       return;
     }
 
     const trackingEntryData = {
-      todaysDate: todaysDateValue,
+      todaysDate: todaysDateObj,
       breakfastCals: breakfastCalsValue,
       lunchCals: lunchCalsValue,
       dinnerCals: dinnerCalsValue,

@@ -4,7 +4,11 @@
 const Overview = () => {
 
   return (
-    <div>Hi Overview Page</div>
+    <div>
+      <h1>Overview Page</h1>
+      <h3>WORK IN PROGRESS</h3>
+      <p>This page will be very important for future features, so we wanted to have it in the folder structure.</p>
+    </div>
   );
 };
 
