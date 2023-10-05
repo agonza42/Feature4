@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createGoalForm } from '../../Common/Services/GoalsService.js';
 
 // Import the child component
 import GoalsChild from './GoalsChild';
@@ -30,42 +31,50 @@ class Goals extends Component {
     console.log('Name:', event.target.name);
     console.log('Value:', event.target.value);
 
-    // WORK IN PROGRESS BELOW! We wanted to see if we could get all of the form data processed into the console for future features
-    /*const { name, value } = event.target;
+    const { name, value } = event.target;
 
-    const updatedFormData = {
-      ...this.state.formData,
-      [name]: value,
-    };
-
-    this.setState({ formData: updatedFormData }, () => {
-      console.log('Updated state:', this.state.formData);
-    });*/
-  }
+    this.setState(prevState => ({
+        formData: {
+            ...prevState.formData,
+            [name]: name === 'age' || name === 'height' || name === 'weight' ? parseFloat(value) : value
+        }
+    }), () => {
+        console.log('Updated state:', this.state.formData);
+    });
+}
 
   // Function to handle asynchronous data when a submit event occurs
-  // FOR FUTURE FEATURES: We'll change this function to asynchronously take in data from the form submission to then send to a JSON file
   async handleSubmit(event) {
     event.preventDefault();
-    // Alert for the submit button
-    alert('Goals form button works');
+    console.log("Submitting form data:", this.state.formData);
+    
+    // Parse the values
+    const heightValue = parseFloat(this.state.formData.height);
+    const weightValue = parseFloat(this.state.formData.weight);
+    const ageValue = parseInt(this.state.formData.age);
+    const goalValue = this.state.formData.goal;
+
+    // Validate the values
+    if (isNaN(heightValue) || isNaN(weightValue) || isNaN(ageValue) || !goalValue) {
+      alert('Please provide valid input values.');
+      return;
+    }
+
+    // Now create the data object to be sent
+    const goalData = {
+      height: heightValue,
+      weight: weightValue,
+      age: ageValue,
+      goal: goalValue
+    };
+
     try {
-      // Here we're simulating a successful API call using promises to test if we can asynchronously handle data
-      let data = await Promise.resolve({
-        message:
-          'Data fetched successfully (from successful asynchronous API call simulation)',
-      });
+      // Create the goal using your service function
+      const response = await createGoalForm(goalData);
+      console.log('Goal created successfully:', response);
 
-      // Update the state with the mocked data
-      this.setState({ fetchedData: data });
-
-      // Alert and log to the console if we've fetched the data successfully
-      alert(
-        'Data fetched successfully (from successful asynchronous API call simulation)'
-      );
-      console.log('Fetched data:', data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error creating the goal:', error);
     }
   }
 

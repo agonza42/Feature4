@@ -51,9 +51,10 @@ function GoalChild({ formData, onChange }) {
             name="goal"
             id="goal"
             onChange={onChange}
+            value={formData.goal || ''}
             required
           >
-            <option disabled selected value> -- select an option -- </option>
+            <option value> -- select an option -- </option>
             <option value="lose">Lose weight</option>
             <option value="gain">Gain weight</option>
             <option value="maintain">Maintain weight</option>

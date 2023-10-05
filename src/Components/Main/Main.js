@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsers, Users } from "../../Common/Services/UserService.js";
 import MainList from "./MainList";
-import UserComponent from "../UserComponent.js"
+import UserComponent from "../Users/UserComponent.js"
 
 // Import the CSS file
 import '../../Style/Home.css'; 
