@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createUser, getById, getAllUsers, removeUser } from '../../Common/Services/UserService';
-
+// THIS COMPONENT FOR USERS IS IN PROGRESS, WE WILL USE THE SIGN UP AND USER AUTHENTICATION METHOD FOR FEATURE 5
+/*
 const UserComponent = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -10,7 +11,7 @@ const UserComponent = () => {
 
     return (
         <div>
-            {/* Inputs and Button for Create User */}
+            {/* Inputs and Button for Create User *//*}
             <div>
                 <input 
                     placeholder="Enter User Name"
@@ -42,7 +43,7 @@ const UserComponent = () => {
 
             <br />
 
-            {/* Input and Button for Get User by ID */}
+            {/* Input and Button for Get User by ID *//*}
             <div>
                 <input 
                     placeholder="Enter User ID"
@@ -60,7 +61,7 @@ const UserComponent = () => {
 
             <br />
 
-            {/* Button for Get All Users */}
+            {/* Button for Get All Users *//*}
             <div>
                 <button onClick={() => {
                     getAllUsers().then(results => {
@@ -71,7 +72,7 @@ const UserComponent = () => {
                     Get All Users
                 </button>
                 
-                {/* Display All Users */}
+                {/* Display All Users *//*}
                 <ul>
                     {users.map(user => <li key={user.id}>{user.get('username')}</li>)}
                 </ul>
@@ -79,7 +80,7 @@ const UserComponent = () => {
 
             <br />
 
-            {/* Input and Button for Remove User by ID */}
+            {/* Input and Button for Remove User by ID *//*}
             <div>
                 <input 
                     placeholder="Enter User ID to Remove"
@@ -99,3 +100,4 @@ const UserComponent = () => {
 }
 
 export default UserComponent;
+*/

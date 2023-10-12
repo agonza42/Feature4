@@ -1,6 +1,7 @@
 import Parse from "parse";
 /* SERVICE FOR PARSE SERVER OPERATIONS */
-
+// THIS FUNCTION FOR USER CREATION IS IN PROGRESS, WE WILL USE THE SIGN UP AND USER AUTHENTICATION METHOD FOR FEATURE 5
+/*
 // CREATE operation - new user with username, password, and email
 export const createUser = (Name, Password, Email) => {
   console.log("Creating User:", Name);
@@ -50,3 +51,4 @@ export const removeUser = (id) => {
     user.destroy();
   });
 };
+*/
