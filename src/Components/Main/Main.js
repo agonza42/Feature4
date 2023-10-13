@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsers, Users } from "../../Common/Services/UserService.js";
 import MainList from "./MainList";
-import UserComponent from "../Users/UserComponent.js"
+//import UserComponent from "../Users/UserComponent.js"
 
 // Import the CSS file
 import '../../Style/Home.css'; 
@@ -13,8 +13,10 @@ import '../../Style/Home.css';
 const Main = () => {
   // const data = useFetch("https://jsonplaceholder.typicode.com/todos/");
   // console.log("data: ", data);
+
+  // THIS IS A FUNCTION IN PROGRESS THAT WILL BE USED TO ALLOW USER INTERACTION
   // Variables in the state to hold data
-  const [users, setUsers] = useState([]);
+  /*const [users, setUsers] = useState([]);
 
   // UseEffect to run when the page loads to
   // obtain async data and render
@@ -27,7 +29,7 @@ const Main = () => {
         setUsers(users);
       });
     }
-  }, []);
+  }, []);*/
 
   return (
     <div>
@@ -35,8 +37,6 @@ const Main = () => {
         Welcome to the one-stop location to track and embark on your
         personalized fitness journey!
       </h4>
-      <MainList users={users} />
-      <UserComponent />
     </div>
   );
 };
