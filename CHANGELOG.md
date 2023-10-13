@@ -5,47 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
  
-## [Unreleased] - yyyy-mm-dd
+## [0.2.0] - 2023-10-13
  
 Here we write upgrading notes for brands. It's a team effort to make them as
 straightforward as possible.
  
 ### Added
-- [PROJECTNAME-XXXX](http://tickets.projectname.com/browse/PROJECTNAME-XXXX)
-  MINOR Ticket title goes here.
-- [PROJECTNAME-YYYY](http://tickets.projectname.com/browse/PROJECTNAME-YYYY)
-  PATCH Ticket title goes here.
- 
+- Navigation bar with routing was added
+- Connected the app to back4app to link it to the database
+- Created forms and linked them to back4app
+- Added CRUD functions for our services, including setting goals for users, tracking their fitness journey and allowing them to subscribe to a premium service.
+- Created multiple components to allow for routing between pages.
+- Created Parse models for each class that we have, we have 4 currently. 
+- Added 3 different pointers to our 3 main services to connect the data to a specific user. 
+
 ### Changed
  
 ### Fixed
  
-## [1.2.4] - 2017-03-15
+## [0.0.0] - 2023-09-25
   
-Here we would have the update steps for 1.2.4 for people to follow.
- 
-### Added
- 
-### Changed
-  
-- [PROJECTNAME-ZZZZ](http://tickets.projectname.com/browse/PROJECTNAME-ZZZZ)
-  PATCH Drupal.org is now used for composer.
- 
-### Fixed
- 
-- [PROJECTNAME-TTTT](http://tickets.projectname.com/browse/PROJECTNAME-TTTT)
-  PATCH Add logic to runsheet teaser delete to delete corresponding
-  schedule cards.
- 
-## [1.2.3] - 2017-03-14
- 
-### Added
-   
-### Changed
- 
-### Fixed
- 
-- [PROJECTNAME-UUUU](http://tickets.projectname.com/browse/PROJECTNAME-UUUU)
-  MINOR Fix module foo tests
-- [PROJECTNAME-RRRR](http://tickets.projectname.com/browse/PROJECTNAME-RRRR)
-  MAJOR Module foo's timeline uses the browser timezone for date resolution 
+Feature 3 in CodeSandbox
